@@ -1,0 +1,16 @@
+{% extends "home/base.html" %}
+
+{% block content %}
+    <br>
+    <h3> Ar tiktrai norite ištrinti vartotoją {{person.first_name }} {{person.last_name }}?</h3>
+
+    <br>
+        <form method="post">
+            {% csrf_token %}
+            <div>
+                <a class="btn btn-primary" href="{% url 'examination:person' person.id %}" role="button"> Atšaukti </a>
+                <input type="submit" class="btn btn-danger" value="Trinti">
+            </div>
+        </form>
+
+{% endblock %}
