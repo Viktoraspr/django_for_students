@@ -66,3 +66,17 @@ def delete_person(request, pk):
     return render(request, "examination/person_delete.html", context)
 
 
+def update(request, pk):
+    person = get_object_or_404(Person, pk=pk)
+    if request.method == "POST":
+        form = PersonForm(request.POST, instance=person)
+        if form.is_valid():
+            form.save()
+        return redirect('examination:person', pk=pk)
+    else:
+        form = PersonForm(instance=person)
+
+    context = {"form": form}
+    return render(request, "examination/person_update.html", context)
+
+
